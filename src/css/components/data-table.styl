@@ -1,0 +1,111 @@
+.data-table
+  color $grey-8
+
+  .q-table__top
+    padding-left 0
+    padding-right 0
+
+  .q-table-control
+    width 100%
+    display flex
+    flex-wrap wrap
+
+  .q-table__sort-icon
+    transition all 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)
+    font-size 100%
+
+  th
+  td
+    padding 12px 24px
+    @media (max-width 1400px)
+      padding 10px 16px
+    @media (max-width 1023px)
+      padding 8px 12px
+
+  th
+    background #fafafa
+    font-size 14px
+    .sort-icons
+      margin-left 10px
+
+      .q-icon
+        color $grey-5
+        font-size 16px
+        line-height 6px
+        height 6px
+        transition color .3s ease
+
+        &:hover
+          color $grey-8
+        &.is-active
+          color $primary
+
+  .status-chip
+    height 0
+    padding 4px
+    margin 0 5px 0 0
+
+  .avatar
+    height 65px
+    width auto
+
+  .q-table__middle
+    padding-top 24px
+
+  tbody
+    td
+      font-size 14px
+
+  .q-pagination
+    margin-top 13px
+
+    .q-btn
+      margin 0 4px
+      font-size 14px
+      padding-left 0
+      padding-right 0
+
+      &.q-btn--flat
+        color $grey-8 !important
+        border 1px solid rgba(0, 0, 0, 0.15)
+
+.data-table__search-select
+.data-table__search-input
+.data-table__date-input
+  max-width 200px
+  padding-top 0 !important
+  margin-right 9px
+
+  .q-field__control
+  .q-field__native
+  .q-field__marginal
+    min-height 32px
+    height 32px
+
+  .q-field__native
+    padding-top 7px
+    padding-bottom 7px
+
+  &:last-child
+    margin-right 0
+
+  .q-select__input
+    min-height 18px
+    line-height 18px
+
+.data-table__search-input
+  width 294px
+  max-width 294px
+
+  .data-table__search-icon
+    transition color .3s ease
+    color rgba(0, 0, 0, 0.25)
+
+  &.q-field--focused
+    .data-table__search-icon
+      color $grey-8
+
+  .q-field__control
+    &:hover
+      .data-table__search-icon
+        color $grey-6

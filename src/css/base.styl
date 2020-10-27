@@ -1,0 +1,290 @@
+html
+  font-size 10px
+
+body
+  min-width 360px
+  font-weight 400
+  background #f5f5f5
+  font-family 'San Francisco Text', 'Helvetica Neue', arial, sans-serif
+  color $text-color
+  font-size 14px
+
+.field-datetime
+  &.q-field--float
+    .q-field__label
+      left -48px
+
+.q-body--fullscreen-mixin
+.q-body--prevent-scroll
+  position static !important
+
+.q-page-container
+  transition all .3s ease
+
+.q-header
+.q-drawer
+  transition all .3s ease
+
+.q-header
+  box-shadow $shadow-2
+
+.q-drawer
+  .drawer-top
+    padding-top 23px
+
+  .q-list
+    padding-top 15px
+
+    .q-item
+      opacity .65
+      padding 16px 10px 16px 23px
+
+    .q-item--clickable
+      display flex
+      justify-content flex-start !important
+
+    .q-item--active
+      color #fff !important
+      opacity 1
+      transition all .2s ease
+
+    .q-item__section--avatar
+      min-width 24px
+      padding-right 8px
+
+    .q-item__label
+      white-space nowrap
+
+    .q-icon
+      font-size 16px
+
+  &.q-drawer--mini
+    .q-item
+      &.has-children
+        display none
+
+    .q-item__section
+      padding-left 16px !important
+      padding-right 16px !important
+      min-width 56px !important
+
+      .q-badge--floating
+        right -9px
+
+  .scroll
+    overflow-x hidden !important
+
+.q-badge
+  font-style normal
+  padding-left 5px
+  padding-right 5px
+
+.q-bar
+  background rgba(0, 0, 0, 0.15)
+
+.q-bar--standard
+  height 50px
+  padding-left 30px
+
+.q-btn
+  text-transform none
+  line-height 23px
+  min-height 32px
+
+  &:not(.q-btn--dense)
+    padding 4px 25px
+
+  &.btn--big
+    line-height 32px
+    min-height 38px
+
+  &.with-icon
+    padding-left 12px
+
+  &.dense
+    padding-left 12px
+    padding-right 12px
+
+  &.narrow
+    padding-top 0
+    padding-bottom 0
+    line-height 24px
+    min-height 22px
+    font-size 12px !important
+
+  &.q-btn--dense.q-btn--round
+    .q-btn__wrapper
+      min-width 32px
+
+.q-btn__wrapper
+  padding 0 !important
+  min-height 0 !important
+
+.q-card
+  box-shadow $shadow-2
+
+.q-dialog__backdrop
+  background rgba(0, 0, 0, 0.65)
+
+.q-dialog__title
+  @extend .text-h2
+
+.q-field__bottom
+  padding-left 0
+
+.q-field__control
+  color currentColor
+  height 40px
+
+.q-field__label
+  font-size 14px
+
+.radio-label
+  margin-left 10px
+  margin-bottom 6px
+
+.q-field--float
+  padding-top 26px
+
+  .q-field__native
+  .q-textarea& .q-field__control-container
+    padding-top 8px
+
+  &.q-field--labeled
+    .q-field__prefix
+    .q-field__suffix
+      padding-top 8px
+
+  .q-field__label
+    transform none !important
+    position absolute
+    top 0
+    right auto
+    left -12px
+    margin-top -26px
+    font-size 14px
+    line-height 18px
+
+  .q-field__marginal
+    height 40px
+
+  &.q-field--with-bottom
+    padding-bottom 26px
+
+.q-field__native
+  &::placeholder
+    color rgba(0, 0, 0, 0.25) !important
+    opacity 1
+
+.q-field--outlined
+  .q-field__control
+    color $grey-8
+
+    &:before
+      border 1px solid rgba(0,0,0,0.15)
+    &:after
+      border-width 1px !important
+      border-radius 4px
+
+    &:hover
+      &:after
+      &:before
+        border-color $grey-6
+
+  &.q-field--focused
+    .q-field__control
+      &:after
+      &:before
+        border-color $grey-8
+
+.q-field__label
+  color rgba(black, .65)
+
+.q-item__section--side
+  > .q-icon
+    transition color 0.3s, background-color 0.3s
+
+.q-list
+  .q-item
+    transition all .3s ease
+
+  .q-list
+    .q-item
+      padding-left 2.5em
+
+  .q-item__label
+    span
+      display inline-block
+
+.q-menu
+  a
+    text-decoration none
+    color inherit
+
+  &.q-transition--fade
+    &-enter-active
+    &-leave-active
+      transition opacity .2s ease !important
+
+.q-ripple
+  display none
+
+.q-select
+  min-width 135px
+
+  &.q-field--outlined.q-field--float
+    &.q-field--auto-height.q-field--labeled
+      .q-field__control-container
+        padding-top 0
+
+  .q-field__native
+    padding-top 0
+    padding-bottom 0
+    white-space nowrap
+    user-select none
+
+  .q-field__append
+    max-height 100%
+    pointer-events none
+
+  .q-field__append.q-anchor--skip
+    display none
+
+.q-tabs
+  .q-tab
+    margin-right 23px
+
+    &:last-child
+      margin-right 0
+
+    &.q-tab--active
+      color $primary
+
+.q-tab__label
+  font-size 14px
+
+h1, .text-h1
+h2, .text-h2
+h3, .text-h3
+h4, .text-h4
+h5, .text-h5
+h6, .text-h6
+.q-dialog__title
+  font-family 'SF UI Display', 'Helvetica Neue', arial, sans-serif
+
+.link
+  color $grey-2
+  text-decoration none !important
+  cursor pointer
+  transition color .2s
+
+  &:hover
+  &:focus
+    color lighten($primary, 20%)
+
+  .q-badge
+    text-decoration none !important
+
+.html-content
+  .link
+    text-decoration underline

@@ -1,0 +1,44 @@
+export default [{
+  label: 'Select link type',
+  value: null
+}, {
+  label: 'Facebook',
+  value: 'facebook',
+  icon: 'ion-logo-facebook',
+  iconBgColor: '#475993'
+}, {
+  label: 'Instagram',
+  value: 'instagram',
+  icon: 'ion-logo-instagram',
+  iconBgColor: '#ec2573'
+}, {
+  label: 'Twitter',
+  value: 'twitter',
+  icon: 'ion-logo-twitter',
+  iconBgColor: '#53b3e1'
+}, {
+  label: 'Website',
+  value: 'website',
+  icon: 'ion-link',
+  iconBgColor: '#1890ff'
+}, {
+  label: 'Skype',
+  value: 'skype',
+  icon: 'ion-logo-skype',
+  iconBgColor: '#53aeef'
+}, {
+  label: 'LinkedIn',
+  value: 'linkedin',
+  icon: 'ion-logo-linkedin',
+  iconBgColor: '#3977b7'
+}, {
+  label: 'Telegram',
+  value: 'telegram',
+  icon: 'app:white:telegram',
+  iconBgColor: '#4795d6'
+}, {
+  label: 'VK',
+  value: 'vk',
+  icon: 'ion-logo-vk',
+  iconBgColor: '#436eab'
+}]
