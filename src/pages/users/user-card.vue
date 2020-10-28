@@ -8,10 +8,20 @@
         | {{ objectTitle }}
 
   .page-contents.card-contents(v-if="page")
-    q-tabs(v-model="tab" dense)
+    q-tabs(v-model="tab" dense inline-label)
       q-tab(name="info" label="Информация")
       q-tab(name="followers" label="Подписчики")
-      q-tab(name="repos" label="Репозитории")
+        q-badge.q-ml-sm(
+          color="primary"
+          v-if="page.followers"
+          align="middle"
+        ) {{ page.followers }}
+      q-tab(name="repos" label="Публичные репозитории")
+        q-badge.q-ml-sm(
+          color="primary"
+          v-if="page.public_repos"
+          align="middle"
+        ) {{ page.public_repos }}
 
     q-card.card.full-width.person-card.no-shadow
       q-card-section(v-if="tab === 'info'")
@@ -35,8 +45,7 @@
 
                 dl
                   dt ID:
-                  dd(v-if="page.id") {{ page.id }}
-                  dd(v-else) Неизвестно
+                  dd {{ page.id }}
 
                 dl
                   dt Ссылка:
@@ -143,33 +152,7 @@ export default {
       return true
     },
 
-    lighten,
-
-    loadParams (query) {
-      query = query || this.$route.query
-
-      if (query.edit && query.edit === 'true') {
-        this.isEditing = true
-      }
-    },
-
-    remove () {
-      if (!this.page || !this.page.id) {
-        return
-      }
-      this.$q.dialog({
-        title: 'Booking deletion',
-        message: 'Are you sure to remove the booking?',
-        cancel: true
-      }).onOk(() => {
-        this.$axios.delete(API.bookings.booking(this.page.id))
-          .then(() => {
-            Alert('Success', 'Booking removed successfully.')
-            this.$router.replace({ name: 'bookings' })
-          })
-          .catch(error => Alert('Error', getErrorText(error)))
-      })
-    }
+    lighten
   },
 
   mixins: [cardMixin]
