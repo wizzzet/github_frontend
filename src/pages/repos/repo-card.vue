@@ -128,7 +128,7 @@ export default {
     copyToClipboard (str) {
       const el = document.createElement('textarea')
       el.value = str
-      el.setAttribute('readonly', '')
+      el.readOnly = true
       el.style = { position: 'absolute', left: '-9999px' }
       document.body.appendChild(el)
       el.select()
