@@ -8,9 +8,6 @@ q-table.full-width.no-shadow.data-table(
   :pagination.sync="pagination"
   @request="getData"
 )
-  template(v-slot:top-left)
-    div
-
   template(v-slot:body="props")
     q-tr.non-selectable(
       :props="props"

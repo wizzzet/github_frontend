@@ -24,7 +24,7 @@
         ) {{ page.public_repos }}
 
     q-card.card.full-width.person-card.no-shadow
-      q-card-section(v-if="tab === 'info'")
+      q-card-section.q-mt-lg(v-if="tab === 'info'")
         .row.q-gutter-lg.content-start
           .col-auto.col-xs-12.col-sm-12.col-md-auto.q-mr-sm
             .person-card__left
@@ -81,12 +81,12 @@
                   dd(v-if="page.location") {{ page.location }}
                   dd(v-else) Неизвестно
 
-      q-card-section.q-mt-xl(v-if="tab === 'followers'")
+      q-card-section(v-if="tab === 'followers'")
           person-followers-table(
             :user="page.login"
           )
 
-      q-card-section.q-mt-xl(v-if="tab === 'repos'")
+      q-card-section(v-if="tab === 'repos'")
         person-repos-table(
           :user="page.login"
         )
