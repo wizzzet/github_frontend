@@ -1,0 +1,109 @@
+.person-title.page-toolbar__title
+  margin-right 22px
+
+.person-tag
+  line-height 16px
+  font-size 12px
+
+.person-tag--active
+  color $positive
+  border-color lighten($positive, 20)
+  background lighten($positive, 55)
+
+.person-tag--big
+  padding 5px
+  font-size 14px
+
+.person-tag--not-active
+  color $negative
+  border-color lighten($negative, 20)
+  background lighten($negative, 42)
+
+.person-tag--custom
+  color $primary
+  border-color lighten($primary, 20)
+  background lighten($primary, 42)
+
+.person-card__avatar
+  height 250px
+  width 250px
+  cursor pointer
+
+.person-card__left
+  max-width 250px
+
+.person-links
+  .q-btn
+    height 24px
+    width 24px
+    min-height 24px
+    line-height 24px
+    border-radius 2px
+    padding 0
+    .q-icon
+      font-size 16px
+    img
+      height 16px
+      width 16px
+
+.person-definitions
+  margin-top 32px
+
+  &:first-child
+    margin-top 0
+
+  dl
+    display flex
+    flex-wrap wrap
+    margin 0 0 12px
+    line-height 18px
+    font-size 14px
+    color $grey-8
+
+    &:last-child
+      margin-bottom 0
+
+  dt
+    flex none
+    color $text-color
+    margin 0 14px 0 0
+
+  dd
+    margin 0
+    flex 1 1 auto
+    max-width 920px
+
+  a:not(.link)
+    &
+    &:visited
+      color $grey-8
+      text-decoration none
+      transition color .3s ease
+
+    &:hover
+      color $primary
+
+  &.person-definitions--paragraphs
+    dt
+      width 100%
+      margin 0 0 8px
+
+    dd
+      line-height 21px
+
+.columns-definitions
+  margin 20px 0 0
+
+  dl
+    margin-right 60px
+
+    &:last-child
+      margin-right 0
+
+  dt
+    font-size 14px
+    color $grey-9
+
+  dd
+    font-size 26px
+    margin-left 0

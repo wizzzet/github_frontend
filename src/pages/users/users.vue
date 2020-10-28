@@ -64,13 +64,17 @@
 
             template(v-slot:bottom)
               .flex.justify-center.full-width(v-if="filter")
-                q-btn.self-center(
+                q-btn.self-center.q-mx-md.q-mt-md(
+                  color="primary"
+                  size="md"
                   :disabled="pagination.page <= 1"
-                  @click="pagination.page -= 1"
+                  @click.native="pagination.page -= 1"
                 ) Предыдущая
-                q-btn.self-center(
+                q-btn.self-center.q-mx-md.q-mt-md(
+                  color="primary"
+                  size="md"
                   :disabled="rows && rows.length < DEFAULT_PER_PAGE"
-                  @click="pagination.page += 1"
+                  @click.native="pagination.page += 1"
                 ) Следующая
 
             template(v-slot:no-data="{ icon, message, filter }")

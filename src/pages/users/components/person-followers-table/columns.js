@@ -1,0 +1,29 @@
+export default [{
+  name: 'avatar_url',
+  label: 'Аватар',
+  field: 'avatar_url',
+  required: true,
+  align: 'left',
+  sortable: false
+}, {
+  name: 'login',
+  label: 'Логин',
+  field: 'login',
+  required: true,
+  align: 'left',
+  sortable: false
+}, {
+  name: 'id',
+  label: 'ID',
+  field: 'id',
+  required: true,
+  align: 'left',
+  sortable: false
+}, {
+  name: 'html_url',
+  label: 'Ссылка',
+  field: 'html_url',
+  required: true,
+  align: 'left',
+  sortable: false
+}]

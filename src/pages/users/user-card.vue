@@ -7,122 +7,79 @@
           q-icon(name="ion-arrow-back" size="sm")
         | {{ objectTitle }}
 
-    .col(v-if="page")
-      .person-tags
-        q-badge.person-tag.cursor-pointer.q-mr-sm(
-          v-if="page.status"
-          outline
-          :label="page.status.title"
-          :style="page.status.color ? { background: lighten(page.status.color, 93), color: page.status.color, borderColor: lighten(page.status.color, 45) } : null"
-          @click="changeStatus"
-        )
-
-    .col-shrink
-      q-btn.q-mr-md.gt-xs.with-icon(
-        color="primary"
-        size="md"
-        @click.native="edit"
-      )
-        q-icon.q-mr-sm(name="app:white:edit" size="xs")
-        | Edit
-
-      q-btn(dense flat text-color="grey-9")
-        q-icon(name="ion-more")
-        q-menu
-          q-item(
-            clickable
-            color="black"
-            @click.native="remove"
-          )
-            q-item-section(avatar)
-              q-icon(name="ion-trash")
-            q-item-section Remove
-
   .page-contents.card-contents(v-if="page")
+    q-tabs(v-model="tab" dense)
+      q-tab(name="info" label="Информация")
+      q-tab(name="followers" label="Подписчики")
+      q-tab(name="repos" label="Репозитории")
+
     q-card.card.full-width.person-card.no-shadow
-      q-card-section
-        .row.q-gutter-lg.no-wrap.content-start
-          .col
+      q-card-section(v-if="tab === 'info'")
+        .row.q-gutter-lg.content-start
+          .col-auto.col-xs-12.col-sm-12.col-md-auto.q-mr-sm
+            .person-card__left
+              q-img.person-card__avatar(
+                v-if="page.avatar_url"
+                :src="page.avatar_url"
+                alt=""
+                :ratio="1"
+              )
+
+          .col.col-xs-12.col-sm-12.col-md-auto
             .person-card__right.full-width
               .person-definitions
                 dl
-                  dt Customer:
-                  dd(v-if="page.customer")
-                    router-link.link(:to="{ name: 'customer-card', params: { id: page.customer.id } }")
-                      | {{ page.customer.first_name || '' }} {{ page.customer.last_name || '' }}
-                  dd(v-else) Unknown
+                  dt Имя:
+                  dd(v-if="page.name") {{ page.name }}
+                  dd(v-else) Неизвестно
 
                 dl
-                  dt Contractor:
-                  dd(v-if="page.contractor")
-                    router-link.link(:to="{ name: 'contractor-card', params: { id: page.contractor.id } }")
-                      | {{ page.contractor.first_name || '' }} {{ page.contractor.last_name || '' }}
-                  dd(v-else) Unknown
-
-                dl(
-                  v-for="assignee in page.assignees"
-                  :key="assignee.id"
-                )
-                  dt {{ assignee.employee_role.title }}:
-                  dd(v-if="assignee.employee")
-                    router-link.link(
-                      :to="{ name: 'employee-card', params: { id: assignee.employee.id } }"
-                    ) {{ assignee.employee.first_name || '' }} {{ assignee.employee.last_name || '' }}
-                  dd(v-else) Unknown
+                  dt ID:
+                  dd(v-if="page.id") {{ page.id }}
+                  dd(v-else) Неизвестно
 
                 dl
-                  dt Location:
-                  dd(v-if="page.location")
-                    router-link.link(
-                      v-if="!page.booking_type.external_locations"
-                      :to="{ name: 'room-card', params: { id: page.location.id } }"
-                    ) {{ page.location.title || '' }} {{ page.location.address || '' }}
-                    a.link(
-                      v-else-if="page.location.place_id"
-                      :href="`https://www.google.com/maps/place/?q=place_id:${page.location.place_id}`"
-                      target="_blank"
-                    ) {{ page.location.title || '' }} {{ page.location.address || '' }}
-                    span(v-else) {{ page.location.title || '' }} {{ page.location.address || '' }}
-                  dd(v-else) Unknown
+                  dt Ссылка:
+                  dd
+                    a.link(:href="page.html_url" target="_blank") {{ page.html_url }}
 
-              .columns-definitions
-                .row
-                  dl
-                    dt Total
-                    dd {{ page.currency.short_code }}{{ page.total_price | intComma(true) }}
+                dl
+                  dt Публичных репозиториев:
+                  dd {{ page.public_repos }}
 
-                  dl
-                    dt House
-                    dd {{ page.currency.short_code }}{{ page.location_price | intComma(true) }}
+                dl
+                  dt Публичных гистов:
+                  dd {{ page.public_gists }}
 
-                  dl
-                    dt Girl
-                    dd {{ page.currency.short_code }}{{ page.contractor_price | intComma(true) }}
+                dl
+                  dt Подписчиков:
+                  dd {{ page.followers }}
 
-                  dl
-                    dt Surcharge
-                    dd {{ page.currency.short_code }}{{ page.surcharge | intComma(true) }}
+                dl
+                  dt Подписан(а) на пользователей:
+                  dd {{ page.following }}
 
-                  dl(
-                    v-for="assignee in page.assignees"
-                    :key="assignee.id"
-                  )
-                    dt {{ assignee.employee_role.title }}
-                    dd {{ assignee.currency.short_code }}{{ assignee.price | intComma(true) }}
+                dl
+                  dt Аккаунт создан:
+                  dd {{ page.created_at | formatDate('DD.MM.YYYY HH:mm') }}
 
-                  dl
-                    dt Customer Payment Type
-                    dd {{ page.payment_type.title }}
+                dl
+                  dt Аккаунт обновлен:
+                  dd {{ page.updated_at | formatDate('DD.MM.YYYY HH:mm') }}
 
-                  dl
-                    dt Date and Time to Appointment
-                    dd(v-if="page.datetime_to_appointment") {{ page.datetime_to_appointment | formatDate('MM/DD/YYYY HH:mm') }}
-                    dd(v-else) Unknown
+                dl
+                  dt Локация:
+                  dd(v-if="page.location") {{ page.location }}
+                  dd(v-else) Неизвестно
 
-      q-card-section.q-mt-xl
-        person-accounts-table(
-          is-payer
-          :selected-booking="page.id"
+      q-card-section.q-mt-xl(v-if="tab === 'followers'")
+          person-followers-table(
+            :user="page.login"
+          )
+
+      q-card-section.q-mt-xl(v-if="tab === 'repos'")
+        person-repos-table(
+          :user="page.login"
         )
 </template>
 
@@ -132,40 +89,42 @@ import API from '../../api'
 import { intComma, formatDate } from '../../filters'
 import { getErrorText } from '../../utils/response'
 import { Alert } from '../../utils/alert'
-import isEqual from 'lodash/isEqual'
 import { lighten } from 'quasar/src/utils/colors'
+import PersonFollowersTable from './components/person-followers-table/person-followers-table'
+import PersonReposTable from './components/person-repos-table/person-repos-table'
 
 export default {
-  name: 'PageBookingCard',
+  name: 'PageUserCard',
 
   beforeRouteUpdate (to, from, next) {
     if (from.params.id !== to.params.id) {
       this.$nextTick(() => {
+        this.tab = 'info'
+        this.$q.loading.show()
+        this.page = null
         this.bindSource()
       })
     }
     next()
   },
 
+  components: {
+    PersonFollowersTable,
+    PersonReposTable
+  },
+
   computed: {
     objectTitle () {
       if (this.page) {
-        return `Booking #${this.page.id}`
+        return `Пользователь ${this.page.login}`
       }
       return ''
     }
   },
 
-  created () {
-    this.getDicts()
-  },
-
   data () {
     return {
-      chat: null,
-      bookingTypes: [],
-      isEditingStatus: false,
-      statuses: []
+      tab: 'info'
     }
   },
 
@@ -173,37 +132,15 @@ export default {
 
   methods: {
     bindSource () {
-      const id = parseInt(this.$route.params.id)
-      if (isNaN(id)) {
-        return false
-      }
+      const id = this.$route.params.id
 
       const vm = this
-      this.$axios.get(API.bookings.booking(id))
+      this.$axios.get(API.github.user(id))
         .then(response => { vm.page = response.data })
-        .catch(error => Alert('Error', getErrorText(error)))
+        .catch(error => Alert('Ошибка', getErrorText(error)))
         .finally(() => this.$q.loading.hide())
 
       return true
-    },
-
-    changeStatus () {
-      this.isEditingStatus = true
-    },
-
-    dumpQuery () {
-      if (!this.inited) {
-        return {}
-      }
-
-      let query = {}
-      if (this.isEditing) {
-        query.edit = 'true'
-      }
-
-      if (query && !isEqual(query, this.$route.query)) {
-        this.$router.replace({ query })
-      }
     },
 
     lighten,
@@ -232,11 +169,6 @@ export default {
           })
           .catch(error => Alert('Error', getErrorText(error)))
       })
-    },
-
-    submittedStatus () {
-      this.isEditingStatus = false
-      this.bindSource()
     }
   },
 

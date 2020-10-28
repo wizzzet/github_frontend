@@ -29,21 +29,12 @@ export const tablePageMixin = {
     return {
       filter: '',
       inited: false,
-      isAddingNew: false,
       rows: [],
       title: ''
     }
   },
 
   methods: {
-    addNewObject () {
-      this.isAddingNew = true
-    },
-
-    closeForm () {
-      this.isAddingNew = false
-    },
-
     dumpQuery () {
       if (!this.inited) {
         return null
@@ -102,7 +93,6 @@ export const tablePageMixin = {
 
   watch: {
     filter () { this.dumpQuery() },
-    isAddingNew () { this.dumpQuery() },
     'pagination.descending' () { this.dumpQuery() },
     'pagination.page' () {
       this.onParamsChange(false)

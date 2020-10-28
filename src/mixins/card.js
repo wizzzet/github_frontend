@@ -13,7 +13,6 @@ export const cardMixin = {
 
   created () {
     this.$q.loading.show({ delay: 200 })
-    this.loadParams()
     this.$nextTick(() => {
       this.inited = true
 
@@ -25,7 +24,6 @@ export const cardMixin = {
 
   data () {
     return {
-      isEditing: false,
       inited: false,
       page: null,
       title: ''
@@ -38,28 +36,5 @@ export const cardMixin = {
     }
   },
 
-  methods: {
-    dumpQuery () {
-      return {}
-    },
-
-    edit () {
-      this.isEditing = true
-    },
-
-    loadParams () {},
-
-    submitted (data) {
-      this.isEditing = false
-      this.bindSource()
-    }
-  },
-
-  mixins: [pageMixin],
-
-  watch: {
-    isEditing () {
-      this.dumpQuery()
-    }
-  }
+  mixins: [pageMixin]
 }
